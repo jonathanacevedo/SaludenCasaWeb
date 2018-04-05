@@ -4,11 +4,10 @@ import '../estilos/Header.css';
 import { Link } from 'react-router-dom';
 
 import Logo from  '../imagenes/logo2.png'; 
-import LoginLogo from  '../imagenes/login.png'; 
+import LoginLogo from  '../imagenes/login2.png'; 
+import RegistroLogo from  '../imagenes/registrar.png'; 
+import CarritoLogo from  '../imagenes/carrito2.png'; 
 
-/*          <ul className="menu">
-{items && items.map((item, key)=> <li key={key}><strong>{item.texto}</strong></li>)}
-</ul>  */
 
 
 class Header extends Component {
@@ -44,8 +43,22 @@ class Header extends Component {
       <div className="App">
         <header className="Header">
           <ul className="linea">
-          <img src={LoginLogo} className="loginLogo"></img>
-          <a>Iniciar Sesión</a>
+            <Link to={'/login'}>
+            <button className="boton">
+            <img src={LoginLogo} className="loginLogo"></img>
+              Iniciar Sesión
+            </button>
+            </Link>
+            <Link to={'/registro'}>
+            <button className="boton">
+              <img src={RegistroLogo} className="loginLogo"></img>
+              <a>Registrarse</a>
+            </button>
+            </Link>
+            <button className="boton">
+              <img src={CarritoLogo} className="loginLogo"></img>
+              <a>Carro de compras</a>
+            </button>
           </ul>
           <table align="center">
             <tbody>

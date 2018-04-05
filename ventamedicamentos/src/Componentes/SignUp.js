@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import './estilos/SignUp.css';
 import { Link,  withRouter} from 'react-router-dom';
 import { auth } from '../firebase';
+
+
 
 
 const INITIAL_STATE = {
@@ -17,7 +20,7 @@ const INITIAL_STATE = {
 
 const SignUpPage = ({ history }) =>
   <div>
-    <h1>SignUp</h1>
+    <h1 className="titulo">Registrarse</h1>
     <SignUpForm history={history}/>
   </div>
 
@@ -41,7 +44,7 @@ class SignUpForm extends Component {
       auth.doCreateUserWithEmailAndPassword(email, passwordOne)
         .then(authUser => {
           this.setState(() => ({ ...INITIAL_STATE }));
-          history.push('/comprar');
+          history.push('/');
         })
         .catch(error => {
           this.setState(byPropKey('error', error));
@@ -66,37 +69,39 @@ class SignUpForm extends Component {
       username === '';
 
     return (
-      <form onSubmit={this.onSubmit}>
-      <input
+
+      <div className="App">
+      <form className="formulario"  onSubmit={this.onSubmit}>
+      <input className="campoForm"
           value={username}
           onChange={event => this.setState(byPropKey('username', event.target.value))}
           type="text"
-          placeholder="Full Name"
+          placeholder="Nombre completo"
         />
-        <input
+        <input className="campoForm"
           value={email}
           onChange={event => this.setState(byPropKey('email', event.target.value))}
           type="text"
-          placeholder="Email Address"
+          placeholder="Email"
         />
-        <input
+        <input className="campoForm"
           value={passwordOne}
           onChange={event => this.setState(byPropKey('passwordOne', event.target.value))}
           type="password"
-          placeholder="Password"
+          placeholder="Contraseña"
         />
-        <input
+        <input className="campoForm"
           value={passwordTwo}
           onChange={event => this.setState(byPropKey('passwordTwo', event.target.value))}
           type="password"
-          placeholder="Confirm Password"
+          placeholder="Confirmar Contraseña"
         />
-        <button disabled={isInvalid} type="submit">
-          Sign Up
+        <button className="botonRegistro" disabled={isInvalid} type="submit">
+          Registrarse
         </button>
-
         { error && <p>{error.message}</p> }
-      </form>
+      </form> 
+      </div>
     );
   }
 }
