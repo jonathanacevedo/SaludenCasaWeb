@@ -9,8 +9,7 @@ import { auth } from '../firebase';
 const INITIAL_STATE = {
     username: '',
     email: '',
-    passwordOne: '',
-    passwordTwo: '',
+    password: '',
     error: null,
   };
 
@@ -31,6 +30,13 @@ class SignUpForm extends Component {
   }
 
   onSubmit = (event) => {
+    var chars = "abcdefghijklmnopqrstuvwxyz!@#$%^&*()-+<>ABCDEFGHIJKLMNOP1234567890";
+    var pass = "";
+    for (var x = 0; x < 17; x++) {
+        var i = Math.floor(Math.random() * chars.length);
+        pass += chars.charAt(i);
+    }
+    var password=pass;
     const {
         username,
         email,
@@ -40,8 +46,8 @@ class SignUpForm extends Component {
       const {
         history,
       } = this.props;
-  
-      auth.doCreateUserWithEmailAndPassword(email, passwordOne)
+
+      auth.doCreateUserWithEmailAndPassword(email, password)
         .then(authUser => {
           this.setState(() => ({ ...INITIAL_STATE }));
           history.push('/');
@@ -49,24 +55,31 @@ class SignUpForm extends Component {
         .catch(error => {
           this.setState(byPropKey('error', error));
         });
-  
-      event.preventDefault();
+        event.preventDefault();
+
+    auth.doPasswordReset(email)
+      .then(() => {
+        this.setState(() => ({ ...INITIAL_STATE }));
+      })
+      .catch(error => {
+        console.log("nnnn");
+        this.setState(byPropKey('error', error));
+      });
+
+    event.preventDefault();
   }
 
   render() {
     const {
         username,
         email,
-        passwordOne,
-        passwordTwo,
+        password,
         error,
       } = this.state;
 
       const isInvalid =
-      passwordOne !== passwordTwo ||
-      passwordOne === '' ||
-      email === '' ||
-      username === '';
+
+      email === '';
 
     return (
 
@@ -85,13 +98,13 @@ class SignUpForm extends Component {
           placeholder="Email"
         />
         <input className="campoForm"
-          value={passwordOne}
+          value={password}
           onChange={event => this.setState(byPropKey('passwordOne', event.target.value))}
           type="password"
           placeholder="Contraseña"
         />
         <input className="campoForm"
-          value={passwordTwo}
+          value={password}
           onChange={event => this.setState(byPropKey('passwordTwo', event.target.value))}
           type="password"
           placeholder="Confirmar Contraseña"
@@ -100,7 +113,7 @@ class SignUpForm extends Component {
           Registrarse
         </button>
         { error && <p>{error.message}</p> }
-      </form> 
+      </form>
       </div>
     );
   }
