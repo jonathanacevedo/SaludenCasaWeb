@@ -16,7 +16,8 @@ const INITIAL_STATE = {
     categoria: '',
     descripcion: '',
     caracteristicas: '',
-    volumen: ''
+    volumen: '',
+    imagen: ''
 };
 
 class Principal extends Component {
@@ -35,6 +36,23 @@ class Principal extends Component {
     });
 }
 
+handleOnChange (event) {
+  const file = event.target.files[0]
+  const storageRef = firebase.storage().ref('imagenes/'+file.name)
+  const task = storageRef.put(file)
+
+  task.on('state_changed', (snapshot) => {
+    console.log('Subido')
+  }, (error) => {
+    console.error(error.message)
+  }, () => {
+    console.log('Link: '+task.snapshot.downloadURL)
+    this.setState({
+      imagen: task.snapshot.downloadURL
+    })
+  })
+}
+
 
 componentDidMount(){
   console.log(this.state.nombreL);
@@ -46,7 +64,8 @@ componentDidMount(){
       categoria,
       descripcion,
       caracteristicas,
-      volumen
+      volumen,
+      imagen
     } = this.state;
 
     const {
@@ -59,7 +78,7 @@ componentDidMount(){
     descripcion: descripcion,
     caracteristica: caracteristicas,
     volumen: volumen,
-    foto: 'https://firebasestorage.googleapis.com/v0/b/insertarprod.appspot.com/o/7501108767527_1.jpg?alt=media&token=862a2019-de7a-4bb2-9eda-2b3d637c9a5a',
+    foto: imagen,
    }).then (()=> {
     this.setState(() => ({ ...INITIAL_STATE }));
     alert('Producto registrado exitosamente');
@@ -74,7 +93,7 @@ componentDidMount(){
       descripcion,
       caracteristicas,
       volumen,
-      foto
+      imagen
     } = this.state;
     return (
       <div className="App">
@@ -84,8 +103,8 @@ componentDidMount(){
           type="text"
           placeholder="Nombre Producto"
           onChange={event => this.setState(byPropKey('nombre', event.target.value))}/>
-          <select className="campoForm" onChange={event => this.setState(byPropKey('categoria', event.target.value))} value={categoria}
->
+          <select className="campoForm" onChange={event => this.setState(byPropKey('categoria', event.target.value))} value={categoria}>
+          <option value="" disabled selected>Categoria</option>
           <option value="niños">Niños</option>
           <option value="mamas">Mamás</option>
           <option value="adultos">Adultos</option>
@@ -94,10 +113,6 @@ componentDidMount(){
           <option value="jarabes">Jarabes</option>
           </select>
         <input className="campoForm"
-          value={categoria}
-          type="text"
-          onChange={event => this.setState(byPropKey('categoria', event.target.value))} placeholder="Categoria" />
-        <input className="campoForm"
           value={descripcion}
           type="text"
           onChange={event => this.setState(byPropKey('descripcion', event.target.value))} placeholder="Descripcion" />
@@ -105,11 +120,13 @@ componentDidMount(){
           value={caracteristicas}
           type="text"
           onChange={event => this.setState(byPropKey('caracteristicas', event.target.value))} placeholder="Caracteristicas" />
-
           <input className="campoForm"
           value={volumen}
           type="text"
           onChange={event => this.setState(byPropKey('volumen', event.target.value))} placeholder="Volumen" />
+          <input type='file' onChange={this.handleOnChange.bind(this)}/>
+          <br />
+          <img src={this.state.imagen} />
         <button className="botonRegistro" type="submit">
           Ingresar Producto
         </button>
