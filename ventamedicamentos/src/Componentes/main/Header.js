@@ -8,8 +8,6 @@ import LoginLogo from  '../imagenes/login2.png';
 import RegistroLogo from  '../imagenes/registrar.png'; 
 import CarritoLogo from  '../imagenes/carrito2.png'; 
 
-
-
 class Header extends Component {
 
 
@@ -79,6 +77,5 @@ class Header extends Component {
     );
   }
 }
-
 
 export default Header;
