@@ -27,7 +27,7 @@ const NavegacionLogin = () =>
             </tbody>
           </table>
         <ul className="menu">
-          <Link to={'/comprar'}><li><button id="comprar" className="boton sobre"> Ingresar Producto </button></li></Link>
+          <Link to={'/ingresar'}><li><button id="comprar" className="boton sobre"> Ingresar Producto </button></li></Link>
           <Link to={'/consultar'}> <li><button id="consultar" className="boton sobre"> Consultar </button></li></Link>
           <Link to={'/contacto'}> <li><button id="contacto" className="boton sobre"> Contacto </button></li></Link>
         </ul>

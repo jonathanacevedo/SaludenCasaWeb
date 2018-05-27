@@ -17,7 +17,7 @@ const Navegacion = ( { authUser } ) =>
 const NavegacionLogin = () =>
 <header className="Header">
           <ul className="linea"> 
-            <SignOutButton className="boton"/>
+            <Link to={'/'}><SignOutButton className="boton"/></Link>
             <button className="boton">
             <img src={CarritoLogo} className="loginLogo"></img>
             <span>Carro de compras</span>

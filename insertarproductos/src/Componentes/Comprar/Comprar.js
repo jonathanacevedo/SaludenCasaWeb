@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import { DB_CONFIG } from '../config';
 import { db, sto } from '../../firebase/firebase';
 import firebase from 'firebase';
 import './comprar.css';
@@ -36,9 +35,9 @@ class Comprar extends Component {
 
 handleOnChange (event) {
   const file = event.target.files[0]
-  const storageRef = sto.ref('imagenes/'+file.name)
+  if(file){
+   const storageRef = sto.ref('imagenes/'+file.name)
   const task = storageRef.put(file)
-
   task.on('state_changed', (snapshot) => {
     let percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
     this.setState({
@@ -56,6 +55,7 @@ handleOnChange (event) {
     })
    
   })
+}
 }
 
 

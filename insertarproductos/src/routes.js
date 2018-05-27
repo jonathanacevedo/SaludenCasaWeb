@@ -19,7 +19,7 @@ const AppRoutes = () =>
 <App>
     <Switch>
         <Route exact path="/" component={ Login } />
-        <Route path="/comprar" component={ Comprar } />
+        <Route path="/ingresar" component={ Comprar } />
         <Route path="/consultar" component={ Consultar } />
         <Route path="/contacto" component={ Contacto } />
         <Route path="/registro" component={ Registro } />
