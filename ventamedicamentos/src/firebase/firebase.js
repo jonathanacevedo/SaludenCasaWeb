@@ -10,12 +10,15 @@ import * as firebase from 'firebase';
     messagingSenderId: "880079533840"
   };
 
+
   if(!firebase.apps.length){
     firebase.initializeApp(config);
   }
 
   const auth = firebase.auth();
+  const db = firebase.database();
 
     export {
     auth,
+    db
     };

@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import './estilos/SignUp.css';
+import '../estilos/SignUp.css';
 import { Link,  withRouter} from 'react-router-dom';
-import { auth } from '../firebase';
-
-
+import { auth } from '../../firebase';
 
 
 const INITIAL_STATE = {
@@ -12,6 +10,7 @@ const INITIAL_STATE = {
     passwordOne: '',
     passwordTwo: '',
     error: null,
+    resultado: ''
   };
 
   const byPropKey = (propertyName, value) => () => ({
@@ -29,10 +28,8 @@ class SignUpForm extends Component {
     super(props);
     this.state = { ...INITIAL_STATE };
   }
-
   onSubmit = (event) => {
     const {
-        username,
         email,
         passwordOne,
       } = this.state;
@@ -44,7 +41,10 @@ class SignUpForm extends Component {
       auth.doCreateUserWithEmailAndPassword(email, passwordOne)
         .then(authUser => {
           this.setState(() => ({ ...INITIAL_STATE }));
-          history.push('/');
+          this.setState({
+            resultado: 'Cuenta Creada Exitosamente'
+          });
+          //history.push('/login');
         })
         .catch(error => {
           this.setState(byPropKey('error', error));
@@ -60,6 +60,7 @@ class SignUpForm extends Component {
         passwordOne,
         passwordTwo,
         error,
+        resultado
       } = this.state;
 
       const isInvalid =
@@ -99,6 +100,8 @@ class SignUpForm extends Component {
         <button className="botonRegistro" disabled={isInvalid} type="submit">
           Registrarse
         </button>
+        <div className="resultado">{resultado}
+        </div>
         { error && <p>{error.message}</p> }
       </form> 
       </div>

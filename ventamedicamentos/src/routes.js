@@ -11,7 +11,8 @@ import Comprar from './Componentes/Comprar/Comprar.js';
 import Consultar from './Componentes/Consultar/Consultar.js';
 import Contacto from './Componentes/Contacto/Contacto.js';
 import Page404 from './Componentes/Page404/Page404.js';
-import Registro from './Componentes/SignUp.js';
+import Registro from './Componentes/Sesion/SignUp.js';
+import Login from './Componentes/Sesion/SignIn.js';
 
 
 const AppRoutes = () =>
@@ -22,6 +23,7 @@ const AppRoutes = () =>
         <Route path="/consultar" component={ Consultar } />
         <Route path="/contacto" component={ Contacto } />
         <Route path="/registro" component={ Registro } />
+        <Route path="/login" component={ Login } />
         <Route component={Page404} />
     </Switch>
 </App>;

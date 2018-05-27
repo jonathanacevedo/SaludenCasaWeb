@@ -1,0 +1,64 @@
+.App {
+    text-align: center;
+}
+  
+.banner{
+   height: 35%;
+   width: 25%;
+   padding: 20px;
+}
+
+input[type="file"] {
+    color: rgb(62, 62, 63);
+    font-size: 0.8em;
+}
+
+.titulo{
+    text-align: center;
+    color: #5AB7DE;
+    font-size: 1.8em;
+}
+
+.icono {
+    padding-top: 20px;
+    height: 10%;
+    width: 10%;
+}
+
+.container1 {
+    text-align: center;
+    background-color: #45aeda;
+    width: 300px;
+    height: 100%;
+    padding-bottom: 40px;
+}
+
+.imagenSubida{
+    border-radius: 40%;
+    text-align: center;
+}
+
+.container2 {
+    text-align: center;
+    background-color: #5AB7DE;
+    width: 300px;
+    height: 100%;
+    padding-bottom: 40px;
+}
+
+.container3 {
+    text-align: center;
+    background-color: #45aeda;
+    width: 300px;
+    height: 100%;
+    padding-bottom: 40px;
+}
+.tabla{
+    padding-bottom: 80px;
+}
+.textoContainer {
+    color: #FFFFFF;
+    font-family: myFirstFont;
+    padding-right: 20px;
+    padding-left: 10px;
+}

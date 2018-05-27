@@ -14,9 +14,9 @@ import Ingreso from './componentes/Login/Login.js';
 const AppRoutes = () =>
 <App>
     <Switch>
-        <Route exact path="/login" component={ Ingreso } />
+        <Route exact path="/" component={ Principal } />
         <Route component={Page404} />
-        <Route path="/login" component={ Principal } />
+        <Route path="/login" component={ Ingreso } />
     </Switch>
 </App>;
 

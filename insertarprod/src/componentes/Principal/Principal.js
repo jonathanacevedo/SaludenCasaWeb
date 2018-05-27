@@ -26,7 +26,7 @@ class Principal extends Component {
     super();
     this.app = firebase.initializeApp(DB_CONFIG);
     this.database = this.app.database().ref().child('productos')
-        this.onChange = this.onChange.bind(this);
+    this.onChange = this.onChange.bind(this);
     this.state = { ...INITIAL_STATE };
   }
 
