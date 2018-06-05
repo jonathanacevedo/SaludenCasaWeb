@@ -37,13 +37,13 @@ class Comprar extends Component {
     this.setState({
       productos: prueba
     });
-  }
-  
+  }  
   render() {
     return (
       <div> 
         <div className="titulo"><strong>Bienvenido</strong></div>
-        <table align="center" className="tabla">
+        <table align="center" classN
+        ame="tabla">
           <tbody>
             {
               this.state.productos.map(producto => 
